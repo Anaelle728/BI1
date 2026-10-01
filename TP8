@@ -1,0 +1,54 @@
+fichier = open('dictionnaire.txt',"r", encoding='utf-8')
+
+
+def ensemble_de_lettres(chemin):
+    fichier = open( chemin , 'r', encoding = 'utf-8' )
+    e=set()
+    for lignes in fichier:
+        for lettre in lignes:
+            if lettre !='\n':
+                e.add(lettre)
+    fichier.close()
+    
+    return e
+
+#ensemble_de_lettres('dictionnaire.txt')
+
+def statistique_lettre(chemin):
+    fichier = open( chemin , 'r', encoding = 'utf-8' )
+    d=dict()
+    for lignes in fichier:
+        for lettre in lignes:
+            if lettre !='\n':
+                if lettre in d:
+                    d[lettre]=d[lettre]+1
+                else:
+                    d[lettre]=1
+    fichier.close()
+                        
+    return d
+
+def max2(dico):
+    max_v=none
+    max_n=0
+    max_v2=none
+    max_n2=0
+    for key in dico:
+        n=dico[key]
+        if n>max-1:
+            max_n2=max_n
+            max_v2=max_v
+            max_n=n
+            max_v=key
+        elif n>max_n2:
+             max_n2=n
+             max_v2=key
+    return max_v
+
+def bilan(chemin,chemin_bilan):
+    for ligne in dictionnaire:
+        for lettre in dictionnaire:
+            if 
+    
+    
+    
