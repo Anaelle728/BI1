@@ -1,0 +1,151 @@
+#!/usr/bin/python3
+import tkinter as tk
+from math import *
+
+
+(Hauteur,Largeur) = (300,300)
+root = tk.Tk()
+root.title("Exprimons nos Ã©motions")
+Dessin = tk.Canvas(root,height=Hauteur,width=Largeur,bg='white')
+Dessin.pack()
+
+def disque(x,y,r,couleur):
+    p = (x+r,y+r)
+    q = (x-r,y-r)
+    Dessin.create_oval(p,q,fill=couleur)
+
+class État():
+    
+    def __init__(self):
+        self.yeux=20
+        self.heureux=True
+        self.affichage()
+       
+        
+    def affichage(self):
+        Dessin.delete('all')
+        # TÃªte
+        (xt,yt)=(Largeur/2,Hauteur/2)
+        Rt=Hauteur*.9/2
+        disque(xt,yt,Rt,'yellow')
+        # Å’il droit    
+        (xd,yd)=(2*Largeur/3,Hauteur/3)
+        disque(xd,yd,self.yeux,'black')
+        # Å’il gauche   
+        (xg,yg)=(Largeur/3,Hauteur/3)
+        disque(xg,yg,self.yeux,'black')
+        # Bouche
+        (xe,ye)=(Largeur/2,2*Hauteur/3)
+        (Rex,Rey)= (40,30)
+        Dessin.create_oval(xe-Rex,ye-Rey,xe+Rex,ye+Rey,fill='red',width=5)
+        print(self.heureux)
+        if self.heureux==False:
+            (xr,yr)=(Largeur/2,2*Hauteur/3+20)
+        else :
+            (xr,yr)=(Largeur/2,2*Hauteur/3-20)
+            
+        (Rrx,Rry)=(70,20)
+        Dessin.create_rectangle(xr-Rrx , yr-Rry , xr+Rrx , yr+Rry ,fill='yellow',width=0)
+        
+def heureux():
+        état.heureux=True
+        état.affichage()
+        
+def pas_heureux():
+        état.heureux=False
+        état.affichage()
+    
+def change_taille(x):
+    état.yeux=int(x)
+    état.affichage()
+    
+        
+       
+       
+        
+       
+état=État()
+bouton1 = tk.Button(root,text="content",command=heureux,width=9)
+bouton2 = tk.Button(root,text="pas content",command=pas_heureux,width=9)
+curseur = tk.Scale(root, orient="horizontal", length=Largeur,label='Rayon',command=change_taille,
+from_=1, to=50)
+bouton1.pack()
+bouton2.pack()
+curseur.pack()
+
+root.mainloop()
+
+#!/usr/bin/python3
+import tkinter as tk
+from math import *
+
+
+(Hauteur,Largeur) = (500,500)
+root = tk.Tk()
+root.title("Balle rebondissante")
+Dessin = tk.Canvas(root,height=Hauteur,width=Largeur,bg='white')
+Dessin.pack()
+
+def disque(x,y,r,couleur):
+    p = (x+r,y+r)
+    q = (x-r,y-r)
+    Dessin.create_oval(p,q,fill=couleur)
+
+
+def ballon(x,y,r):
+    p=(x-r,y-r) ; p1=(x-2.5*r,y-r) ; p2=(x+2.5*r,y-r)
+    q=(x+r,y+r) ; q1=(x-.5*r, y+r) ; q2=x+.5*r, y+r
+    Dessin.create_oval(p,q,fill='orange',outline='black',width=5)
+    Dessin.create_line((x,y-r),(x,y+r),width=5)
+    Dessin.create_arc(p1,q1, extent=80, start=-40, width=5,style='arc')
+    Dessin.create_arc(p2,q2, extent=80, start=140, width=5,style='arc')
+    
+class État():
+    
+    
+    def __init__(self):
+        
+        self.x=(Largeur//2)
+        self.y=(Hauteur//2)
+        self.xv=5
+        self.yv=2
+        self.r=40
+        self.temps=0
+        self.affichage()
+        
+        
+    def affichage(self):
+        Dessin.delete('all')
+        ballon(self.x,self.y,self.r)
+        self.x += self.xv
+        self.y += self.yv
+        if self.x >= Largeur:
+            self.xv = -self.xv
+        if self.y>= Hauteur:
+            self.yv= -self.yv
+        if self.x <= 0:
+            self.xv = -self.xv
+        if self.y<=0:
+            self.yv= -self.yv
+        
+            
+            
+        
+        
+        
+        
+        
+def tictac():
+    état.temps = état.temps+1
+    état.affichage()
+    Dessin.after(10,tictac)
+    
+    
+    
+    
+    
+état=État()
+tictac() 
+root.mainloop()
+
+   
