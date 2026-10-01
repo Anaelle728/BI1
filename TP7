@@ -1,0 +1,63 @@
+from pnm import *
+from matrice import *
+# voir_fichier('space-invader-pieuvre.pbm' , quadrillage=True)
+# voir_fichier('space-invader-pieuvre.pbm')
+# voir_fichier('exemple.pbm')
+
+
+M = fichier_vers_matrice('space-invader-pieuvre.pbm')
+print(M)
+
+M = fichier_vers_matrice('space-invader-pieuvre.pbm')
+M[ 6 ][ 5 ] = 1
+matrice_vers_fichier(M,'space-invader-pieuvre2.pbm')
+# voir_fichier('space-invader-pieuvre2.pbm')
+
+
+def aff(M,pleins,vide):
+    (n , m )= dimensions(M)
+    B = nouvelle_matrice(n,m)
+    for i in range(n): #lignes 
+        for j in range(m):# colones 
+            if M[i][j]== True:
+                print(pleins , end='')
+                B[i][j] = pleins
+            else :
+                print(vide , end='')
+                B[i][j] = vide
+        print('')                        
+    return B
+
+
+aff(M,'#','.')
+
+
+
+def ajoute_horizontal(M1,M2):
+    n,m1=dimensions(M1)
+    n2,m2= dimensions(M2)
+    assert(n==n2)
+    m3=m1+m2
+    B = nouvelle_matrice(n,m3)
+    for i in range(m1):
+        for j in range(m2):
+            B[i][j] = M1[i][j] 
+            B[i][j] = M2[i][j]
+    return B
+
+    M = fichier_vers_matrice('space-invader-pieuvre.pbm')
+    M2 = ajoute_horizontal(M , M)
+    M3 = ajoute_horizontal(M2 , M)
+    matrice_vers_fichier(M3 , 'space-invader-3-pieuvres.pbm')
+
+def répète_horizontal(M,k):
+    acc=0
+    n,m=dimensions(M)
+    
+    while acc<=k:
+        for i in range(n):
+            for j in range(m):
+                M = M+M
+        acc = acc+1 
+            
+
