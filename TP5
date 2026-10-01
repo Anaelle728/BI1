@@ -1,0 +1,134 @@
+#exercice1
+
+import tkinter as tk
+
+# On crée une fenêtre
+root = tk.Tk()
+root.title("Mon programme Tk")
+
+# On crée un canvas (zone de dessin)
+Hauteur = 500
+Largeur = 500
+Dessin=tk.Canvas(root,height=Hauteur,width=Largeur,bg="white")
+Dessin.pack()
+
+P1= (0,0)
+P2 = (500,250)
+b = 'blue'
+Dessin.create_rectangle(P1,P2,width=3, outline= b, fill=b)
+
+
+r1= (450,50)
+r2= (50,450)
+Dessin.create_oval(r1,r2,fill= 'purple',outline='purple')
+
+r1= (440,60)
+r2= (60,440)
+Dessin.create_oval(r1,r2,fill= 'indigo',outline='indigo')
+
+r1= (430,70)
+r2= (70,430)
+Dessin.create_oval(r1,r2,fill= 'green',outline='green')
+
+r1= (420,80)
+r2= (80,420)
+Dessin.create_oval(r1,r2,fill= 'yellow',outline='yellow')
+
+r1= (410,90)
+r2= (90,410)
+Dessin.create_oval(r1,r2,fill= 'orange',outline='orange')
+
+r1= (400,100)
+r2= (100,400)
+Dessin.create_oval(r1,r2,fill= 'red',outline='red')
+
+r1= (390,110)
+r2= (110,390)
+Dessin.create_oval(r1,r2,fill= 'blue',outline='blue')
+
+
+P1= (0,250)
+P2 = (500,500)
+b = 'green'
+Dessin.create_rectangle(P1,P2,width=3, outline= b, fill = b)
+
+root.mainloop()
+
+#exercice2
+
+import tkinter as tk
+
+# On crée une fenêtre
+root = tk.Tk()
+root.title("Mon programme Tk")
+
+# On crée un canvas (zone de dessin)
+Hauteur = 700
+Largeur = 700
+Dessin=tk.Canvas(root,height=Hauteur,width=Largeur,bg="white")
+Dessin.pack()
+
+delta=31.8
+
+r1=(700-delta , delta)
+r2=(delta , 700-delta)
+Dessin.create_rectangle(r1,r2,fill = '#C8A165', outline='black' )
+
+r1=(700- 2*delta , 2*delta)
+r2=(2*delta , 700- 2*delta)
+Dessin.create_rectangle(r1,r2, outline='black' )
+
+for i in range(2,21):
+    Dessin.create_line((2*delta,delta*i) , (20*delta, delta*i))
+    Dessin.create_line((delta*i,2*delta) , (delta*i, 20*delta))
+
+
+
+
+
+
+
+
+
+root.mainloop()
+import tkinter as tk
+# On crée une fenêtre
+root = tk.Tk()
+root.title("Mon programme Tk bis")
+# On crée un canvas (zone de dessin)
+Hauteur = 700
+Largeur = 700
+Dessin=tk.Canvas(root,height=Hauteur,width=Largeur,bg="white")
+Dessin.pack()
+delta= 700/22
+
+r1 = (delta,Hauteur-delta)
+r2 = (Largeur-delta,delta)
+# Carré
+Dessin.create_rectangle(r1,r2,fill='#C8A165', outline= 'black')
+
+r1 = (2*delta,Hauteur-(2*delta))
+r2 = (Largeur-(2*delta),(2*delta))
+# Carré
+Dessin.create_rectangle(r1,r2,fill='#C8A165', outline= 'black')
+
+
+for i in range(1,18):
+    p1=(i*delta+2*delta,2*delta)
+    p2=(2*delta+i*delta,Hauteur-2*delta)
+    Dessin.create_line(p1,p2,fill='black')
+    
+for i in range(1,18):
+    p1=(2*delta,2*delta+i*delta)
+    p2=(Largeur-2*delta,2*delta+i*delta)
+    Dessin.create_line(p1,p2,fill='black')
+    
+
+tab=[(4,4),(4,10),(4,16),(10,4),(10,10),(10,16),(16,4),(16,10),(16,16)]
+for i in range(len(tab)):
+    p1 = ((tab[i][0]+1) * delta - 4, (tab[i][1]+1) * delta - 4)
+    p2 = ((tab[i][0]+1) * delta + 4, (tab[i][1]+1) * delta + 4)
+    Dessin.create_oval(p1,p2,width=0,fill='black')
+    
+    
+
